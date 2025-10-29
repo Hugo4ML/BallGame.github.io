@@ -1,7 +1,13 @@
 "use strict";
 
 export class Keyboard {
+  /*
+  Manages keyboard inputs.
+  */
   constructor() {
+    /*
+    Provides an interface for all keys.
+    */
     const keys = [
       {
           key: "Backspace",
