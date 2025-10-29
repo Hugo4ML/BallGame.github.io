@@ -2,46 +2,53 @@
 
 import * as input from "./input.js";
 
-function Box(canvas, x, y, width, height) {
+class Box {
   /*
   Rectangle drawn by using webgl element buffers.
   */
-  this.gl = canvas.getContext("webgl2");
-  this.position = {
-    x: x,
-    y: y
-  };
-  this.dimensions = {
-    width: width,
-    height: height
+  constructor(canvas, x, y, width, height) {
+    /*
+    Define position and dimensions and create webgl components.
+    */
+    this.gl = canvas.getContext("webgl2");
+    this.position = {
+      x: x,
+      y: y
+    };
+    this.dimensions = {
+      width: width,
+      height: height
+    }
+    
+    this.vao = this.gl.createVertexArray();
+    this.gl.bindVertexArray(this.vao);
+    this.gl.enableVertexAttribArray(0);
+    this.gl.enableVertexAttribArray(1);
+  
+    this.vbo = this.gl.createBuffer();
+    this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vbo);
+    this.gl.bufferData(this.gl.ARRAY_BUFFER, 4 * 5 * 32 / 8, this.gl.STATIC_DRAW);
+  
+    this.ebo = this.gl.createBuffer();
+    this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, this.ebo);
+    this.gl.bufferData(this.gl.ELEMENT_ARRAY_BUFFER, new Uint32Array([
+      0, 1, 2,
+      0, 2, 3
+    ]), this.gl.STATIC_DRAW);
+    
+    this.gl.vertexAttribPointer(0, 2, this.gl.FLOAT, false, 5 * 32 / 8, 0);
+    this.gl.vertexAttribPointer(1, 3, this.gl.FLOAT, false, 5 * 32 / 8, 2 * 32 / 8);
   }
   
-  this.vao = this.gl.createVertexArray();
-  this.gl.bindVertexArray(this.vao);
-  this.gl.enableVertexAttribArray(0);
-  this.gl.enableVertexAttribArray(1);
-
-  this.vbo = this.gl.createBuffer();
-  this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vbo);
-  this.gl.bufferData(this.gl.ARRAY_BUFFER, 4 * 5 * 32 / 8, this.gl.STATIC_DRAW);
-
-  this.ebo = this.gl.createBuffer();
-  this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, this.ebo);
-  this.gl.bufferData(this.gl.ELEMENT_ARRAY_BUFFER, new Uint32Array([
-    0, 1, 2,
-    0, 2, 3
-  ]), this.gl.STATIC_DRAW);
-  
-  this.gl.vertexAttribPointer(0, 2, this.gl.FLOAT, false, 5 * 32 / 8, 0);
-  this.gl.vertexAttribPointer(1, 3, this.gl.FLOAT, false, 5 * 32 / 8, 2 * 32 / 8);
-}
-
-Box.prototype.draw = function() {
-  this.gl.bindVertexArray(this.vao)
-  this.gl.drawElements(this.gl.TRIANGLES, 6, this.gl.UNSIGNED_INT, 0);
-}
-
-Object.defineProperty(Box.prototype, "color", {
+  function draw() {
+    /*
+    Draw rectangle with webgl.
+    */
+    this.gl.bindVertexArray(this.vao)
+    this.gl.drawElements(this.gl.TRIANGLES, 6, this.gl.UNSIGNED_INT, 0);
+  }
+};
+/*Object.defineProperty(Box.prototype, "color", {
   get() {
     
   },
@@ -51,13 +58,13 @@ Object.defineProperty(Box.prototype, "color", {
       this.gl.bufferSubData(this.gl.ARRAY_BUFFER, vertex * 5 * 32 / 8 + 2 * 32 / 8, data);
     }
   }
-})
+})*/
 
 async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.16) Simple project";
+  window.document.title = "(0.1.17) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
