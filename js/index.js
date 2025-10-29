@@ -40,7 +40,7 @@ class Box {
     this.gl.vertexAttribPointer(1, 3, this.gl.FLOAT, false, 5 * 32 / 8, 2 * 32 / 8);
   }
   
-  function draw() {
+  draw() {
     /*
     Draw rectangle with webgl.
     */
@@ -64,7 +64,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.17) Simple project";
+  window.document.title = "(0.1.18) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
