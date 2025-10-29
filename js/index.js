@@ -1,12 +1,12 @@
 "use strict";
 
-//import {Box} from "./box.js";
+import {Box} from "./box.js";
 import * as input from "./input.js";
 
-class Box {
+/*class Box {
   /*
   Rectangle drawn by using webgl element buffers.
-  */
+  
   gl;
   vao;
   ebo;
@@ -17,7 +17,7 @@ class Box {
   constructor(canvas, x, y, width, height) {
     /*
     Define position and dimensions and create webgl components.
-    */
+    
     this.gl = canvas.getContext("webgl2");
     this.x = x;
     this.y = y;
@@ -47,11 +47,11 @@ class Box {
   draw() {
     /*
     Draw rectangle with webgl.
-    */
+    
     this.gl.bindVertexArray(this.vao)
     this.gl.drawElements(this.gl.TRIANGLES, 6, this.gl.UNSIGNED_INT, 0);
   }
-}
+}*/
 /*Object.defineProperty(Box.prototype, "color", {
   get() {
     
@@ -68,7 +68,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.27) Simple project";
+  window.document.title = "(0.1.28) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
