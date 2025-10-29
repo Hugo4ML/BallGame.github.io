@@ -6,6 +6,11 @@ class Box {
   /*
   Rectangle drawn by using webgl element buffers.
   */
+  position;
+  dimensions;
+  vao;
+  ebo;
+  gl;
   constructor(canvas, x, y, width, height) {
     /*
     Define position and dimensions and create webgl components.
@@ -64,7 +69,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.19) Simple project";
+  window.document.title = "(0.1.20) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
