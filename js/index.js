@@ -47,7 +47,7 @@ class Box {
     this.gl.bindVertexArray(this.vao)
     this.gl.drawElements(this.gl.TRIANGLES, 6, this.gl.UNSIGNED_INT, 0);
   }
-};
+}
 /*Object.defineProperty(Box.prototype, "color", {
   get() {
     
@@ -64,7 +64,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.18) Simple project";
+  window.document.title = "(0.1.19) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
