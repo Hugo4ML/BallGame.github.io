@@ -2,7 +2,7 @@
 
 import * as input from "./input.js";
 
-function Rect(canvas, x, y, width, height) {
+function Box(canvas, x, y, width, height) {
   /*
   Rectangle drawn by using webgl element buffers.
   */
@@ -36,12 +36,12 @@ function Rect(canvas, x, y, width, height) {
   this.gl.vertexAttribPointer(1, 3, this.gl.FLOAT, false, 5 * 32 / 8, 2 * 32 / 8);
 }
 
-Rect.prototype.draw = function() {
+Box.prototype.draw = function() {
   this.gl.bindVertexArray(this.vao)
   this.gl.drawElements(this.gl.TRIANGLES, 6, this.gl.UNSIGNED_INT, 0);
 }
 
-Object.defineProperty(Rect.prototype, "color", {
+Object.defineProperty(Box.prototype, "color", {
   get() {
     
   },
@@ -57,7 +57,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.15) Simple project";
+  window.document.title = "(0.1.16) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -113,7 +113,8 @@ async function main() {
     0, 2, 3
   ]), gl.STATIC_DRAW);
   
-  let box = new Rect(canvas, 0.0, 0.0, 0.2, 0.35);
+  //let box = new Box(canvas, 0.0, 0.0, 0.2, 0.35);
+  let box = new Box(canvas, -0.1, -0.825, 0.2, 0.0875);
   
   let time = Date.now();
   let deltaInnerWidth = undefined, deltaInnerHeight = undefined;
