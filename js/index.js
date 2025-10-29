@@ -1,5 +1,6 @@
 "use strict";
 
+import {Box} from "./box.js";
 import * as input from "./input.js";
 
 class Box {
@@ -67,7 +68,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.23) Simple project";
+  window.document.title = "(0.1.24) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
