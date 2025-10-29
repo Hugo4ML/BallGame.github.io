@@ -6,24 +6,22 @@ class Box {
   /*
   Rectangle drawn by using webgl element buffers.
   */
-  position;
-  dimensions;
   gl;
   vao;
   ebo;
+  x;
+  y;
+  width;
+  height;
   constructor(canvas, x, y, width, height) {
     /*
     Define position and dimensions and create webgl components.
     */
     this.gl = canvas.getContext("webgl2");
-    this.position = {
-      x: x,
-      y: y
-    };
-    this.dimensions = {
-      width: width,
-      height: height
-    }
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
     
     this.vao = this.gl.createVertexArray();
     this.gl.bindVertexArray(this.vao);
@@ -69,7 +67,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.22) Simple project";
+  window.document.title = "(0.1.23) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -146,10 +144,10 @@ async function main() {
     };
     
     if(keyboard.ArrowRight.down) {
-      box.position.x += 0.001 * deltaTime;
+      box.x += 0.001 * deltaTime;
     }
     if(keyboard.ArrowLeft.down) {
-      box.position.x -= 0.001 * deltaTime;
+      box.x -= 0.001 * deltaTime;
     }
 
     let positions = [
@@ -159,8 +157,8 @@ async function main() {
       new Float32Array([0.0, 0.35])
     ];
     for(let vertex = 0; vertex < 4; ++vertex) {
-      positions[vertex][0] += box.position.x;
-      positions[vertex][1] += box.position.y;
+      positions[vertex][0] += box.x;
+      positions[vertex][1] += box.y;
       gl.bufferSubData(gl.ARRAY_BUFFER, vertex * 5 * 32 / 8, positions[vertex]);
     }
     
