@@ -71,7 +71,7 @@ async function main() {
     
     gl.useProgram(await program);
     box.draw();
-    ball.draw();
+    //ball.draw();
   }, 1000 / 60);
 }
 
