@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.42) Simple project";
+  window.document.title = "(0.1.43) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -37,7 +37,7 @@ async function main() {
   
   let box = new Box(gl, -0.1, -0.825, 0.2, 0.0875);
   {
-    let vao = gl.createVertexArray();
+    /*let vao = gl.createVertexArray();
     gl.bindVertexArray(vao);
     gl.enableVertexAttribArray(0);
     gl.enableVertexAttribArray(1);
@@ -54,8 +54,7 @@ async function main() {
     ]), gl.STATIC_DRAW);
     
     gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 5 * 32 / 8, 0);
-    gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 5 * 32 / 8, 2 * 32 / 8);
-
+    gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 5 * 32 / 8, 2 * 32 / 8);*/
   }
   //let ball = new Box(gl, -0.025, -0.04375, 0.05, 0.0875)
   //let targets = new Array(10);
