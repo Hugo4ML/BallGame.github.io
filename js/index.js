@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.32) Simple project";
+  window.document.title = "(0.1.33) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -81,6 +81,10 @@ async function main() {
       deltaInnerWidth = window.innerWidth, deltaInnerHeight = window.innerHeight;
       gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
     };
+    //Reassign background and box colors.
+    box.color = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0];
+    backgroundColor = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [0.0, 0.0, 0.0]: [1.0, 1.0, 1.0];
+    //Check input.
     
     if(keyboard.ArrowRight.down) {
       box.x += 0.001 * deltaTime;
