@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.47) Simple project";
+  window.document.title = "(0.1.48) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -35,12 +35,13 @@ async function main() {
   let boxColor =  (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0];
   let backgroundColor = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [0.0, 0.0, 0.0]: [1.0, 1.0, 1.0];
   
+  gl.enableVertexAttribArray(0);
+  gl.enableVertexAttribArray(1);
+  
   let box = new Box(gl, -0.1, -0.825, 0.2, 0.0875);
   {
     let vao = gl.createVertexArray();
     gl.bindVertexArray(vao);
-    gl.enableVertexAttribArray(0);
-    gl.enableVertexAttribArray(1);
     
     let vbo = gl.createBuffer();
     /*gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
