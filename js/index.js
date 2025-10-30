@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.35) Simple project";
+  window.document.title = "(0.1.36) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -37,6 +37,8 @@ async function main() {
   
   let box = new Box(canvas, -0.1, -0.825, 0.2, 0.0875);
   let ball = new Box(canvas, -0.025, -0.04375, 0.05, 0.0875)
+  let targets = new Array(10);
+  for(let target = 0; target < targets.length; ++target) targets[target] = new Box(canvas, target * (0.1 / 16 - 0.0375 + 0.2), 0.75, 0.1 / 16 - 0.075, 0.125);
   
   let time = Date.now();
   let deltaInnerWidth = undefined, deltaInnerHeight = undefined;
@@ -71,7 +73,8 @@ async function main() {
     
     gl.useProgram(await program);
     box.draw();
-    //ball.draw();
+    ball.draw();
+    for(let target = 0; target < targets.length; ++target) targets[target].draw();
   }, 1000 / 60);
 }
 
