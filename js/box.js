@@ -25,8 +25,9 @@ export class Box {
     
     this.vao = this.gl.createVertexArray();
     this.gl.bindVertexArray(this.vao);
-    this.gl.enableVertexAttribArray(0);
-    this.gl.enableVertexAttribArray(1);
+    //PROBABLY BEING STUPID; OH WELL...
+    //this.gl.enableVertexAttribArray(0);
+    //this.gl.enableVertexAttribArray(1);
     
     this.vbo = this.gl.createBuffer();
     this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vbo);
