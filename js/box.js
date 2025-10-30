@@ -48,7 +48,7 @@ export class Box {
     Draw rectangle with webgl.
     */
     this.gl.bindVertexArray(this.vao);
-    this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array[
+    this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array([
       this.x,              this.y,               this.color[0], this.color[1], this.color[2],
       this.x + this.width, this.y,               this.color[0], this.color[1], this.color[2],
       this.x + this.width, this.y + this.height, this.color[0], this.color[1], this.color[2],
