@@ -27,11 +27,11 @@ export class Box {
     this.gl.bindVertexArray(this.vao);
     this.gl.enableVertexAttribArray(0);
     this.gl.enableVertexAttribArray(1);
-  
+    
     this.vbo = this.gl.createBuffer();
     this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vbo);
     this.gl.bufferData(this.gl.ARRAY_BUFFER, 4 * 5 * 32 / 8, this.gl.STATIC_DRAW);
-  
+    
     this.ebo = this.gl.createBuffer();
     this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, this.ebo);
     this.gl.bufferData(this.gl.ELEMENT_ARRAY_BUFFER, new Uint32Array([
