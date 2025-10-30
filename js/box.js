@@ -21,7 +21,7 @@ export class Box {
     this.y = y;
     this.width = width;
     this.height = height;
-    this.color = [0.5, 0.5, 0.5, 1.0];
+    this.color = [0.0, 0.0, 0.0];
     
     this.vao = this.gl.createVertexArray();
     this.gl.bindVertexArray(this.vao);
