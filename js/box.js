@@ -12,11 +12,11 @@ export class Box {
   width;
   height;
   color;
-  constructor(canvas, x, y, width, height) {
+  constructor(gl, x, y, width, height) {
     /*
     Define position and dimensions and create webgl components.
     */
-    this.gl = canvas.getContext("webgl2");
+    this.gl = gl;//canvas.getContext("webgl2");
     this.x = x;
     this.y = y;
     this.width = width;
