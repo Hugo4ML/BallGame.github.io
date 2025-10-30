@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.41) Simple project";
+  window.document.title = "(0.1.42) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -36,6 +36,27 @@ async function main() {
   let backgroundColor = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [0.0, 0.0, 0.0]: [1.0, 1.0, 1.0];
   
   let box = new Box(gl, -0.1, -0.825, 0.2, 0.0875);
+  {
+    let vao = gl.createVertexArray();
+    gl.bindVertexArray(vao);
+    gl.enableVertexAttribArray(0);
+    gl.enableVertexAttribArray(1);
+    
+    let vbo = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+    gl.bufferData(gl.ARRAY_BUFFER, 4 * 5 * 32 / 8, gl.STATIC_DRAW);
+    
+    ebo = gl.createBuffer();
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ebo);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint32Array([
+      0, 1, 2,
+      0, 2, 3
+    ]), gl.STATIC_DRAW);
+    
+    gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 5 * 32 / 8, 0);
+    gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 5 * 32 / 8, 2 * 32 / 8);
+
+  }
   //let ball = new Box(gl, -0.025, -0.04375, 0.05, 0.0875)
   //let targets = new Array(10);
   //for(let target = 0; target < targets.length; ++target) targets[target] = new Box(canvas, target * (0.1 / 16 - 0.0375 + 0.2), 0.75, 0.1 / 16 - 0.075, 0.125);
