@@ -63,7 +63,6 @@ async function main() {
     0, 2, 3
   ]), gl.STATIC_DRAW);
   
-  //let box = new Box(canvas, 0.0, 0.0, 0.2, 0.35);
   let box = new Box(canvas, -0.1, -0.825, 0.2, 0.0875);
   
   let time = Date.now();
