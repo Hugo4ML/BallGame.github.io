@@ -45,7 +45,14 @@ export class Box {
     /*
     Draw rectangle with webgl.
     */
-    this.gl.bindVertexArray(this.vao)
+    let positions = new Float32Array([
+      this.x,              this.y,
+      this.x + this.width, this.y,
+      this.x + this.width, this.y + this.height,
+      this.x,              this.y + this.height
+    ]);
+    this.gl.bindVertexArray(this.vao);
+    this.gl.bufferData();
     this.gl.drawElements(this.gl.TRIANGLES, 6, this.gl.UNSIGNED_INT, 0);
   }
 }
