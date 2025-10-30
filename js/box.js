@@ -11,6 +11,7 @@ export class Box {
   y;
   width;
   height;
+  color;
   constructor(canvas, x, y, width, height) {
     /*
     Define position and dimensions and create webgl components.
@@ -20,6 +21,7 @@ export class Box {
     this.y = y;
     this.width = width;
     this.height = height;
+    this.color = [0.0, 0.0, 0.0, 1.0];
     
     this.vao = this.gl.createVertexArray();
     this.gl.bindVertexArray(this.vao);
@@ -46,13 +48,13 @@ export class Box {
     Draw rectangle with webgl.
     */
     const vertices = new Float32Array([
-      this.x,              this.y,
-      this.x + this.width, this.y,
-      this.x + this.width, this.y + this.height,
-      this.x,              this.y + this.height
+      this.x,              this.y,               this.color[0], this.color[1], this.color[2], this.color[3],
+      this.x + this.width, this.y,               this.color[0], this.color[1], this.color[2], this.color[3],
+      this.x + this.width, this.y + this.height, this.color[0], this.color[1], this.color[2], this.color[3],
+      this.x,              this.y + this.height, this.color[0], this.color[1], this.color[2], this.color[3]
     ]);
     this.gl.bindVertexArray(this.vao);
-    this.gl.bufferData(gl.ARRAY_BUFFER, vertices);
+    this.gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
     this.gl.drawElements(this.gl.TRIANGLES, 6, this.gl.UNSIGNED_INT, 0);
   }
 }
