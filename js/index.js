@@ -37,12 +37,12 @@ async function main() {
   
   let box = new Box(gl, -0.1, -0.825, 0.2, 0.0875);
   {
-    /*let vao = gl.createVertexArray();
+    let vao = gl.createVertexArray();
     gl.bindVertexArray(vao);
     gl.enableVertexAttribArray(0);
     gl.enableVertexAttribArray(1);
     
-    let vbo = gl.createBuffer();
+    /*let vbo = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
     gl.bufferData(gl.ARRAY_BUFFER, 4 * 5 * 32 / 8, gl.STATIC_DRAW);
     
