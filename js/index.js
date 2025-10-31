@@ -37,7 +37,7 @@ async function main() {
   
   let box = new Box(canvas, -0.1, -0.825, 0.2, 0.0875);
   let ball = new Box(canvas, -0.025, -0.04375, 0.05, 0.0875);
-  let nah = new Box(canvas, 0.3, 0.3, 1.0 / 9.0, 1.0 / 16.0);
+  let nah = new Box(canvas, 0.3, 0.3, 1.0 / 16.0, 1.0 / 9.0);
   let targets = new Array(8);
   for(let target = 0; target < targets.length; ++target) targets[target] = new Box(canvas, target * 0.25 + 0.05 - 1.0, 1.0 - 0.0875 - 0.125, 0.25 - 0.1, 0.125);
   
