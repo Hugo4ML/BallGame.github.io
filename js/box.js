@@ -23,6 +23,9 @@ export class Box {
     this.height = height;
     this.color = [0.0, 0.0, 0.0];
     
+    const boundVao = ;
+    const boundVbo = ;
+    
     this.vao = this.gl.createVertexArray();
     this.gl.bindVertexArray(this.vao);
     
@@ -41,6 +44,7 @@ export class Box {
     this.gl.enableVertexAttribArray(0);
     this.gl.vertexAttribPointer(1, 3, this.gl.FLOAT, false, 5 * 32 / 8, 2 * 32 / 8);
     this.gl.enableVertexAttribArray(1);
+
   }
   
   draw() {
