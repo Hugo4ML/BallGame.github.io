@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.48) Simple project";
+  window.document.title = "(0.1.49) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -39,13 +39,15 @@ async function main() {
   gl.enableVertexAttribArray(1);
   
   let box = new Box(gl, -0.1, -0.825, 0.2, 0.0875);
+  gl.bindVertexArray(null);
+  gl.bidBuffer(gl.ARRAY_BUFFER, null);
   {
     let vao = gl.createVertexArray();
     gl.bindVertexArray(vao);
     
     let vbo = gl.createBuffer();
-    /*gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
-    gl.bufferData(gl.ARRAY_BUFFER, 4 * 5 * 32 / 8, gl.STATIC_DRAW);
+    gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+    /*gl.bufferData(gl.ARRAY_BUFFER, 4 * 5 * 32 / 8, gl.STATIC_DRAW);
     
     ebo = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ebo);
