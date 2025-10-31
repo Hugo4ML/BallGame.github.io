@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.54) Simple project";
+  window.document.title = "(0.1.55) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -36,7 +36,7 @@ async function main() {
   let backgroundColor = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [0.0, 0.0, 0.0]: [1.0, 1.0, 1.0];
   
   let box = new Box(gl, -0.1, -0.825, 0.2, 0.0875);
-  //let ball = new Box(gl, -0.025, -0.04375, 0.05, 0.0875);
+  let ball = new Box(gl, -0.025, -0.04375, 0.05, 0.0875);
   //let targets = new Array(10);
   //for(let target = 0; target < targets.length; ++target) targets[target] = new Box(canvas, target * (0.1 / 16 - 0.0375 + 0.2), 0.75, 0.1 / 16 - 0.075, 0.125);
   
