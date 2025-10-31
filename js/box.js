@@ -12,11 +12,11 @@ export class Box {
   width;
   height;
   color;
-  constructor(gl, x, y, width, height) {
+  constructor(canvas, x, y, width, height) {
     /*
     Define position and dimensions and create webgl components.
     */
-    this.gl = gl;//canvas.getContext("webgl2");
+    this.gl = canvas.getContext("webgl2");
     this.x = x;
     this.y = y;
     this.width = width;
@@ -44,6 +44,9 @@ export class Box {
     this.gl.enableVertexAttribArray(0);
     this.gl.vertexAttribPointer(1, 3, this.gl.FLOAT, false, 5 * 32 / 8, 2 * 32 / 8);
     this.gl.enableVertexAttribArray(1);
+    
+    this.gl.bindVertexArray(boundVao);
+    this.gl.bindBuffer(this.gl.ARRAY_BUFFER, boundVbo);
   }
   
   draw() {
