@@ -23,15 +23,14 @@ export class Box {
     this.height = height;
     this.color = [0.0, 0.0, 0.0];
     
-    this.vao = this.gl.createVertexArray();
-    this.gl.bindVertexArray(this.vao);
-    //PROBABLY BEING STUPID; OH WELL...
-    //this.gl.enableVertexAttribArray(0);
-    //this.gl.enableVertexAttribArray(1);
-    
     this.vbo = this.gl.createBuffer();
     this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vbo);
     this.gl.bufferData(this.gl.ARRAY_BUFFER, 4 * 5 * 32 / 8, this.gl.STATIC_DRAW);
+    
+    this.vao = this.gl.createVertexArray();
+    this.gl.bindVertexArray(this.vao);
+    this.gl.enableVertexAttribArray(0);
+    this.gl.enableVertexAttribArray(1);
     
     this.ebo = this.gl.createBuffer();
     this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, this.ebo);
