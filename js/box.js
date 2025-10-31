@@ -53,6 +53,8 @@ export class Box {
     /*
     Update vertex data and draw box with new dimensions.
     */
+    const boundVbo = this.gl.getParameter(this.gl.ARRAY_BUFFER_BINDING);
+    
     this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.vbo);
     this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array([
       this.x,              this.y,               this.color[0], this.color[1], this.color[2],
@@ -61,9 +63,14 @@ export class Box {
       this.x,              this.y + this.height, this.color[0], this.color[1], this.color[2]
     ]), this.gl.STATIC_DRAW);
     
+    this.gl.bindBuffer(this.gl.ARRAY_BUFFER, boundVbo);
     
     //Draw rectangle with webgl.
+    const boundVao = this.gl.getParameter(this.gl.VERTEX_ARRAY_BINDING);
+    
     this.gl.bindVertexArray(this.vao);
     this.gl.drawElements(this.gl.TRIANGLES, 6, this.gl.UNSIGNED_INT, 0);
+
+    this.gl.bindVertexArray(boundVao);
   }
 }
