@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.68) Simple project";
+  window.document.title = "(0.1.69) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -38,8 +38,11 @@ async function main() {
   let box = new Box(canvas, -0.1, -0.825, 0.2, 0.0875);
   let ball = new Box(canvas, -0.025, -0.04375, 0.05, 0.0875);
   let nah = new Box(canvas, 0.3, 0.3, 0.140625, 0.25);
-  let targets = new Array(8);
-  for(let target = 0; target < targets.length; ++target) targets[target] = new Box(canvas, target * 0.25 + 0.03515625 - 1.0, 1.0 - 0.0625 - 0.125, 0.25 - 0.0703125, 0.125);
+  let targets = new Array(30);
+  for(let target = 0; target < 8; ++target) targets[target] = new Box(canvas, target * 0.25 + 0.03515625 - 1.0, 1.0 - 0.0625 - 0.125, 0.25 - 0.0703125, 0.125);
+  for(let target = 8; target < 15; ++target) targets[target] = new Box(canvas, target * 0.25 + 0.03515625 - 1.0, 1.0 - (0.0625 - 0.125) * 2.0, 0.25 - 0.0703125, 0.125);
+  for(let target = 15; target < 23; ++target) targets[target] = new Box(canvas, target * 0.25 + 0.03515625 - 1.0, 1.0 - (0.0625 - 0.125) * 3.0, 0.25 - 0.0703125, 0.125);
+  for(let target = 23; target < 30; ++target) targets[target] = new Box(canvas, target * 0.25 + 0.03515625 - 1.0, 1.0 - (0.0625 - 0.125) * 4.0, 0.25 - 0.0703125, 0.125);
   
   let time = Date.now();
   let deltaInnerWidth = undefined, deltaInnerHeight = undefined;
