@@ -12,7 +12,7 @@ export class Box {
   width;
   height;
   color;
-  constructor(canvas, x, y, width, height) {
+  constructor(canvas, x, y, width, height, color) {
     /*
     Define position and dimensions and create webgl components.
     */
