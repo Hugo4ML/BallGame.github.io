@@ -140,11 +140,11 @@ async function main() {
         }
       };
       const timeSteps = [noWall, rightWall, leftWall, topWall, bottomWall];
-      let target = timeSteps[0];
+      /*let target = timeSteps[0];
       for(let timeStep of timeSteps) {
         if(timeStep.time > 0.0 && timeStep.time <= deltaTime && timeStep.time < target.time) target = timeStep;
-      }
-      target.f();
+      }*/
+      //target.f();
       time = 0.0;
     }
     
