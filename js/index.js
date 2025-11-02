@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.1.88) Simple project";
+  window.document.title = "(0.1.89) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -71,11 +71,13 @@ async function main() {
     }
     
     //Check input.
-    if(keyboard.ArrowRight.down) {
-      box.x += 0.001125 * deltaTime;
+    if(keyboard.ArrowRight.down && !keyboard.ArrowLeft.down) {
+      if(box.x + box.width > 1.0) box.x = 1.0 - box.width;
+      else box.x += 0.001125 * deltaTime;
     }
-    if(keyboard.ArrowLeft.down) {
-      box.x -= 0.001125 * deltaTime;
+    if(keyboard.ArrowLeft.down && !keyboard.ArrowRight.down) {
+      if(box.x < -1.0) box.x = -1.0;
+      else box.x -= 0.001125 * deltaTime;
     }
 
     //Move ball.
