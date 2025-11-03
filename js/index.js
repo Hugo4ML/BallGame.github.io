@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.25) Simple project";
+  window.document.title = "(0.2.26) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -140,8 +140,8 @@ async function main() {
             ballYSpeed *= -1.0
           }
         };
-        const timeSteps = [noWall, leftWall, rightWall, topWall, bottomWall];
-        let target = timeSteps[0];
+        const timeSteps = [leftWall, rightWall, topWall, bottomWall];
+        let target = noWall;
         for(let timeStep of timeSteps) {
           if(timeStep.time > 0.0 && timeStep.time <= deltaTime && timeStep.time <= target.time) target = timeStep;
         }
