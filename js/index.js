@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.29) Simple project";
+  window.document.title = "(0.2.30) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -32,8 +32,8 @@ async function main() {
   gl.attachShader(program, await fragmentShader);
   gl.linkProgram(await program);
 
-  let ballXSpeed = -0.0005625;
-  let ballYSpeed = 0.001;
+  let ballXSpeed = 0.0005625 / 4;
+  let ballYSpeed = 0.001 / 4;
   
   let box = new Box(canvas, -0.1, -0.86875, 0.028125 * 8, 0.05, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
   let ball = new Box(canvas, Math.random() - 0.5140625, -0.025, 0.028125/*0.0281251*/, 0.05, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
@@ -109,17 +109,17 @@ async function main() {
           }
         }
         const rightWall = {
-          time: (1.0 - ball.x - (ball.width + 0.000001)) / ballXSpeed,
+          time: (1.0 - ball.x - (ball.width - 0.0000001)) / ballXSpeed,
           f: () => {
-            ball.y += ballYSpeed * (1.0 - ball.x - (ball.width + 0.000001)) / ballXSpeed;
-            ball.x = 1.0 - ball.width;
+            ball.y += ballYSpeed * (1.0 - ball.x - (ball.width - 0.0000001)) / ballXSpeed;
+            ball.x = 1.0 - (ball.width - 0.0000001);
             ballXSpeed *= -1.0;
           }
         };
         const leftWall = {
-          time: (-1.0 - (ball.width + 0.000001)) / ballXSpeed,
+          time: (-1.0 - ball.x) / ballXSpeed,
           f: () => {
-            ball.y += ballYSpeed * (-1.0 - (ball.width + 0.000001)) / ballXSpeed;
+            ball.y += ballYSpeed * (-1.0 - (ball.width - 0.0000001)) / ballXSpeed;
             ball.x = -1.0;
             ballXSpeed *= -1.0
           }
