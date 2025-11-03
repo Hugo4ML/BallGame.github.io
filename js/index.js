@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.31) Simple project";
+  window.document.title = "(0.2.32) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -109,17 +109,17 @@ async function main() {
           }
         }
         const rightWall = {
-          time: (1.0 - ball.x - (ball.width - 0.0000001)) / ballXSpeed,
+          time: (1.0 - ball.x - ball.width) / ballXSpeed,
           f: () => {
-            ball.y += ballYSpeed * (1.0 - ball.x - (ball.width - 0.0000001)) / ballXSpeed;
-            ball.x = 1.0 - (ball.width - 0.0000001);
+            ball.y += ballYSpeed * (1.0 - ball.x - ball.width) / ballXSpeed;
+            ball.x = 1.0 - ball.width;
             ballXSpeed *= -1.0;
           }
         };
         const leftWall = {
           time: (-1.0 - ball.x) / ballXSpeed,
           f: () => {
-            ball.y += ballYSpeed * (-1.0 - (ball.width - 0.0000001)) / ballXSpeed;
+            ball.y += ballYSpeed * (-1.0 - ball.width) / ballXSpeed;
             ball.x = -1.0;
             ballXSpeed *= -1.0
           }
