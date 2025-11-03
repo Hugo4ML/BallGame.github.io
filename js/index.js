@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.17) Simple project";
+  window.document.title = "(0.2.18) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -104,14 +104,14 @@ async function main() {
         const noWall = {
           time: deltaTime,
           f: () => {
-            //ball.x += ballXSpeed * deltaTime;
+            ball.x += ballXSpeed * deltaTime;
             ball.y += ballYSpeed * deltaTime;
           }
         }
         const rightWall = {
           time: (1.0 - ball.x - ball.width) / ballXSpeed,
           f: () => {
-            //ball.x += ballXSpeed * (1.0 - ball.y - ball.height) / ballYSpeed;
+            ball.y += ballYSpeed * (1.0 - ball.x - ball.width) / ballXSpeed;
             ball.x = 1.0 - ball.width;
             ballXSpeed *= -1.0;
           }
@@ -119,7 +119,7 @@ async function main() {
         const leftWall = {
           time: (-1.0 - ball.x) / ballXSpeed,
           f: () => {
-            //ball.x += ballXSpeed * (-1.0 - ball.y) / ballYSpeed;
+            ball.y += ballYSpeed * (-1.0 - ball.x) / ballXSpeed;
             ball.x = -1.0;
             ballXSpeed *= -1.0
           }
@@ -127,7 +127,7 @@ async function main() {
         const topWall = {
           time: (1.0 - ball.y - ball.height) / ballYSpeed,
           f: () => {
-            //ball.x += ballXSpeed * (1.0 - ball.y - ball.height) / ballYSpeed;
+            ball.x += ballXSpeed * (1.0 - ball.y - ball.height) / ballYSpeed;
             ball.y = 1.0 - ball.height;
             ballYSpeed *= -1.0;
           }
@@ -135,12 +135,12 @@ async function main() {
         const bottomWall = {
           time: (-1.0 - ball.y) / ballYSpeed,
           f: () => {
-            //ball.x += ballXSpeed * (-1.0 - ball.y) / ballYSpeed;
+            ball.x += ballXSpeed * (-1.0 - ball.y) / ballYSpeed;
             ball.y = -1.0;
             ballYSpeed *= -1.0
           }
         };
-        const timeSteps = [noWall, /*leftWall, rightWall, */topWall, bottomWall];
+        const timeSteps = [noWall, leftWall, rightWall, topWall, bottomWall];
         let target = timeSteps[0];
         for(let timeStep of timeSteps) {
           if(timeStep.time > 0.0 && timeStep.time <= deltaTime && timeStep.time < target.time) target = timeStep;
