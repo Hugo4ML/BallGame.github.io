@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.41) Simple project";
+  window.document.title = "(0.2.42) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -32,8 +32,8 @@ async function main() {
   gl.attachShader(program, await fragmentShader);
   gl.linkProgram(await program);
 
-  let ballXSpeed = -0.0005625 / 8.0;
-  let ballYSpeed = 0.001 / 8.0;
+  let ballXSpeed = -0.0005625 / 2.0;
+  let ballYSpeed = 0.001 / 2.0;
   
   let box = new Box(canvas, -0.1, -0.86875, 0.028125 * 8, 0.05, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
   let ball = new Box(canvas, Math.random() - 0.5140625, -0.025, 0.028125/*/0.0281251*/, 0.05, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
@@ -100,7 +100,6 @@ async function main() {
     //Move ball.
     {
       let time = deltaTime;
-      ball.width += 0.0000001;
       while(time > 0.0) {
         const noWall = {
           time: deltaTime,
@@ -143,13 +142,14 @@ async function main() {
         };
         const timeSteps = [leftWall, rightWall, topWall, bottomWall];
         let target = noWall;
+        ball.width += 0.0000001;
         for(let timeStep of timeSteps) {
           if(timeStep.time > 0.0 && timeStep.time <= deltaTime && timeStep.time <= target.time) target = timeStep;
         }
         target.f();
+        ball.width -= 0.0000001;
         time -= target.time;
       }
-      ball.width -= 0.0000001;
     }
     
     gl.clearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], 1.0);
