@@ -112,8 +112,10 @@ async function main() {
           time: (1.0 - ball.x - ball.width) / ballXSpeed,
           f: () => {
             //ball.width += 0.0000001;
-            ball.y += ballYSpeed * (1.0 - ball.x - ball.width) / ballXSpeed;
-            ball.x = 1.0 - ball.width;
+            //ball.y += ballYSpeed * (1.0 - ball.x - ball.width) / ballXSpeed;
+            //ball.x = 1.0 - ball.width;
+            ball.y += ballYSpeed * (1.0 - ball.x - (ball.width + 0.0000001)) / ballXSpeed;
+            ball.x = 1.0 - (ball.width + 0.0000001);
             ballXSpeed *= -1.0;
             //ball.width -= 0.0000001;
           }
