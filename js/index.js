@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.64) Simple project";
+  window.document.title = "(0.2.65) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -112,8 +112,10 @@ async function main() {
       if(targets[0].time < bulletTime) {
         ball.x += targets[0].time * ballXSpeed;
         targets[0].f();
+        bulletTime -= targets[0].time;
       } else {
         ball.x += target.time * ballXSpeed;
+        bulletTime = 0.0;
       }
     }
     
