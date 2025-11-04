@@ -87,6 +87,7 @@ async function main() {
         ball.x = 1.0 - ball.width;
         bulletTime -= (1.0 - ball.x - ball.width) / ballXSpeed;
         ballXSpeed *= -1.0;
+        ball.color = [time % 1.0, time % 1.0 + 0.5, time % 1.0];
       /*} else if(ball.x + ballXSpeed * bulletTime < -1.0) {
         ball.x = -1.0;
         bulletTime -= (-1.0 - ball.x) / ballXSpeed;
