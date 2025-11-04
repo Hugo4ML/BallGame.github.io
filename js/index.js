@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.95) Simple project";
+  window.document.title = "(0.2.96) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -85,9 +85,9 @@ async function main() {
     let bulletTime = deltaTime;
     while(bulletTime > 0.0) {
       if(/*ball.x + ball.width + ballXSpeed * bulletTime > 1.0*//*ballXSpeed * bulletTime > (1.0 - ball.x - ball.width)*/bulletTime >= (1.0 - ball.x - ball.width) / ballXSpeed) {
-        ball.x = 1.0 - ball.width;
+        ball.x = 1.0 - ball.width - 0.0000001;
         bulletTime -= (1.0 - ball.x - ball.width) / ballXSpeed;
-        //ballXSpeed *= -1.0;
+        ballXSpeed *= -1.0;
       /*} else if(ball.x + ballXSpeed * bulletTime < -1.0) {
         ball.x = -1.0;
         bulletTime -= (-1.0 - ball.x) / ballXSpeed;
@@ -97,65 +97,6 @@ async function main() {
         bulletTime = 0.0;
       }
     };
-
-    if(typeof(bulletTime) == typeof((1.0 - ball.x - ball.width) / ballXSpeed)) {
-      ball.color = [1.0, 0.5, 0.0];
-    } else {
-      ball.color = [0.5, 0.0, 1.0];
-    }
-
-    /*let bulletTime = deltaTime;
-    while(bulletTime > 0.0) {
-      if(ball.x + ball.width + ballXSpeed * bulletTime > 1.0) {
-        ball.x = 1.0 - ball.width;
-        bulletTime -= (1.0 - ball.x - wall.width) / ballXSpeed;
-        ballXpeed *= -1.0;
-      } else {
-        ball.x += ballXSpeed * bulletTime;
-        bulletTime = 0.0;
-      }*/
-      /*let targets = [{
-        time: (1.0 - ball.x - ball.width) / ballXSpeed,
-        f: () => {
-          ballXSpeed *= -1.0
-        }
-      }];
-      let target = {
-        time: bulletTime,
-        f: () => {}
-      }
-      if(targets[0].time < bulletTime) {
-        ball.x += targets[0].time * ballXSpeed;
-        targets[0].f();
-        bulletTime -= targets[0].time;
-      } else {
-        ball.x += target.time * ballXSpeed;
-        bulletTime = 0.0;
-      }*/
-    //}
-    
-    //Move ball.
-    /*let bulletTime = deltaTime;
-    while(bulletTime > 0.0) {
-      let collisions = [{
-        time: (1.0 - ball.x - ball.width) / ballXSpeed,
-        f: () => {
-          ball.color = [1.0, 0.5, 0.0];
-          ballXSpeed = -0.0005625 / 32.0;
-          //ballXSpeed *= -1.0;
-        }
-      }];
-      let target = {
-        time: bulletTime,
-        f: () => {}
-      };
-      for(let collision of collisions) {
-        if(collision.time > 0.0 && collision.time < target.time) target = collision;
-      }
-      ball.x += target.time * ballXSpeed;
-      target.f();
-      bulletTime -= target.time;
-    }*/
     
     gl.clearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
