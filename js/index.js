@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.60) Simple project";
+  window.document.title = "(0.2.61) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -97,8 +97,20 @@ async function main() {
       }
     }*/
 
-    //Move ball.
     let bulletTime = deltaTime;
+    while(bulletTime > 0.0) {
+      if(ball.x + ball.width + ballXSpeed * movementTime > 1.0) {
+        ball.x = 1.0 - ball.width;
+        bulletTime -= (1.0 - ball.x - ball.width) / ballXSpeed;
+        ballXSpeed *= -1.0;
+      else {
+        ball.x += ballXSpeed * bulletTime;
+        bulletTime = 0.0;
+      }
+    }
+    
+    //Move ball.
+    /*let bulletTime = deltaTime;
     while(bulletTime > 0.0) {
       let collisions = [{
         time: (1.0 - ball.x - ball.width) / ballXSpeed,
@@ -107,12 +119,7 @@ async function main() {
           ballXSpeed = -0.0005625 / 32.0;
           //ballXSpeed *= -1.0;
         }
-      }/*, {
-        time: (-1.0 - ball.x) / ballXSpeed,
-        f: () => {
-          ballXSpeed *= -1.0;
-        }
-      }*/];
+      }];
       let target = {
         time: bulletTime,
         f: () => {}
@@ -123,51 +130,6 @@ async function main() {
       ball.x += target.time * ballXSpeed;
       target.f();
       bulletTime -= target.time;
-    }
-    
-    //Move ball.
-    /*{
-      let time = deltaTime;
-      while(time > 0.0) {
-        let xxxtime = time;
-        const noWall = {
-          time: xxxtime,
-          f: () => {}
-        }
-        const rightWall = {
-          time: (1.0 - ball.x - ball.width) / ballXSpeed,
-          f: () => {
-            ballXSpeed *= -1.0;
-          }
-        };
-        const leftWall = {
-          time: (-1.0 - ball.x) / ballXSpeed,
-          f: () => {
-            ballXSpeed *= -1.0;
-          }
-        };
-        const topWall = {
-          time: (1.0 - ball.y - ball.height) / ballYSpeed,
-          f: () => {
-            ballYSpeed *= -1.0;
-          }
-        };
-        const bottomWall = {
-          time: (-1.0 - ball.y) / ballYSpeed,
-          f: () => {
-            ballYSpeed *= -1.0
-          }
-        };
-        const timeSteps = [leftWall, rightWall, topWall, bottomWall];
-        let target = noWall;
-        for(let timeStep of timeSteps) {
-          if(timeStep.time > 0.0 && timeStep.time <= target.time) target = timeStep;
-        }
-        ball.x += ballXSpeed * target.time;
-        ball.y += ballYSpeed * target.time;
-        target.f();
-        time -= target.time;
-      }
     }*/
     
     gl.clearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], 1.0);
