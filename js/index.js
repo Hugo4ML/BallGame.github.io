@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.66) Simple project";
+  window.document.title = "(0.2.67) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -99,7 +99,7 @@ async function main() {
 
     let bulletTime = deltaTime;
     while(bulletTime > 0.0) {
-      if(ball.x + ball.width + ballXSpeed * movementTime > 1.0) {
+      if(ball.x + ball.width + ballXSpeed * bulletTime > 1.0) {
         ball.x = 1.0 - ball.width;
         bulletTime -= (1.0 - ball.x - wall.width) / ballXSpeed;
         ballXpeed *= -1.0;
