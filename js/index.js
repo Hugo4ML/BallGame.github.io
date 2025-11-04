@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.56) Simple project";
+  window.document.title = "(0.2.57) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -98,46 +98,33 @@ async function main() {
     }*/
 
     //Move ball.
-    /*let bulletTime = deltaTime;
+    let bulletTime = deltaTime;
     while(bulletTime > 0.0) {
-      let noWall = {
-        time: bulletTime,
-        f: () => {}
-      }
-      let leftWall = {
-        time: (-1.0 - ball.x) / ballXSpeed,
-        f: () => {
-          ballXSpeed *= -1.0;
-        }
-      }
-      let rightWall = {
+      let collisions = [{
         time: (1.0 - ball.x - ball.width) / ballXSpeed,
         f: () => {
           ballXSpeed *= -1.0;
         }
-      }
-      let timeSteps = [leftWall, rightWall];
-      let target = [noWall];
-      let targetTime = deltaTime;
-      for(let timeStep of timeSteps) {
-        if(timeStep.time > 0.0 && timeStep.time < targetTime) {
-          target = [timeStep];
-          targetTime = target.time;
+      }, {
+        time: (-1.0 - ball.x) / ballXSpeed,
+        f: () => {
+          ballXSpeed *= -1.0;
         }
-        if(timeStep.time > 0.0 && timeStep.time == targetTime) {
-          target.push(timeStep);
-        }
+      }];
+      let target = {
+        time: bulletTime,
+        f: () => {}
+      };
+      for(let collision of collisions) {
+        if(collision.time > 0.0 && collision.time < target.time) target = collision;
       }
-      ball.x += targetTime * ballXSpeed;
-      //ball.y += targetTime * ballYSpeed;
-      for(let t of target) {
-        t.f();
-      }
-      bulletTime -= targetTime;
-    }*/
+      ball.x += target.time * ballXSpeed;
+      target.f();
+      bulletTime -= target.time;
+    }
     
     //Move ball.
-    {
+    /*{
       let time = deltaTime;
       while(time > 0.0) {
         let xxxtime = time;
@@ -179,7 +166,7 @@ async function main() {
         target.f();
         time -= target.time;
       }
-    }
+    }*/
     
     gl.clearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
