@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.52) Simple project";
+  window.document.title = "(0.2.53) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -81,7 +81,7 @@ async function main() {
     }
 
     //Move ball.
-    /*let movementTime = deltaTime;
+    let movementTime = deltaTime;
     while(movementTime > 0.0) {
       if(ball.x + ball.width + ballXSpeed * movementTime > 1.0) {
         ball.x = 1.0 - ball.width;
@@ -95,10 +95,10 @@ async function main() {
         ball.x += ballXSpeed * movementTime;
         movementTime = 0.0;
       }
-    }*/
+    }
     
     //Move ball.
-    {
+    /*{
       let time = deltaTime;
       while(time > 0.0) {
         const noWall = {
@@ -139,7 +139,7 @@ async function main() {
         target.f();
         time -= target.time;
       }
-    }
+    }*/
     
     gl.clearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
