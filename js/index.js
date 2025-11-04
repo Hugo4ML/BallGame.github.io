@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.53) Simple project";
+  window.document.title = "(0.2.54) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -81,7 +81,7 @@ async function main() {
     }
 
     //Move ball.
-    let movementTime = deltaTime;
+    /*let movementTime = deltaTime;
     while(movementTime > 0.0) {
       if(ball.x + ball.width + ballXSpeed * movementTime > 1.0) {
         ball.x = 1.0 - ball.width;
@@ -95,6 +95,45 @@ async function main() {
         ball.x += ballXSpeed * movementTime;
         movementTime = 0.0;
       }
+    }*/
+
+    //Move ball.
+    let bulletTime = deltaTime;
+    while(bulletTime > 0.0) {
+      let noWall = {
+        time: bulletTime,
+        f: () => {}
+      }
+      let leftWall = {
+        time: (-1.0 - ball.x) / ballXSpeed,
+        f: () => {
+          ballXSpeed *= -1.0;
+        }
+      }
+      let rightWall = {
+        time: (1.0 - ball.x - ball.width) / ballXSpeed,
+        f: () => {
+          ballXSpeed *= -1.0;
+        }
+      }
+      let timeSteps = [leftWall, rightWall];
+      let target = [noWall];
+      let targetTime = deltaTime;
+      for(let timeStep of timeSteps) {
+        if(timeStep.time > 0.0 && timeStep.time < targetTime) {
+          target = [timeStep];
+          targetTime = target.time;
+        }
+        if(timeStep.time > 0.0 && timeStep.time == targetTime) {
+          target.push(timeStep);
+        }
+      }
+      ball.x += targetTime * ballXSpeed;
+      ball.y += targetTime * ballYSpeed;
+      for(let t of target) {
+        t.f();
+      }
+      bulletTime -= targetTime;
     }
     
     //Move ball.
