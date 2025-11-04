@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.59) Simple project";
+  window.document.title = "(0.2.60) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -104,7 +104,8 @@ async function main() {
         time: (1.0 - ball.x - ball.width) / ballXSpeed,
         f: () => {
           ball.color = [1.0, 0.5, 0.0];
-          ballXSpeed *= -1.0;
+          ballXSpeed = -0.0005625 / 32.0;
+          //ballXSpeed *= -1.0;
         }
       }/*, {
         time: (-1.0 - ball.x) / ballXSpeed,
