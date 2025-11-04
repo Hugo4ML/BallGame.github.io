@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.2.69) Simple project";
+  window.document.title = "(0.2.70) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -81,19 +81,19 @@ async function main() {
     }
 
     //Move ball.
-    let movementTime = deltaTime;
-    while(movementTime > 0.0) {
-      if(ball.x + ball.width + ballXSpeed * movementTime > 1.0) {
+    let bulletTime = deltaTime;
+    while(bulletTime > 0.0) {
+      if(ball.x + ball.width + ballXSpeed * bulletTime > 1.0) {
         ball.x = 1.0 - ball.width;
-        movementTime -= (1.0 - ball.x - ball.width) / ballXSpeed;
+        bulletTime -= (1.0 - ball.x - ball.width) / ballXSpeed;
         ballXSpeed *= -1.0;
-      /*} else if(ball.x + ballXSpeed * movementTime < -1.0) {
+      /*} else if(ball.x + ballXSpeed * bulletTime < -1.0) {
         ball.x = -1.0;
-        movementTime -= (-1.0 - ball.x) / ballXSpeed;
+        bulletTime -= (-1.0 - ball.x) / ballXSpeed;
         ballXSpeed *= -1.0;*/
       } else {
-        ball.x += ballXSpeed * movementTime;
-        movementTime = 0.0;
+        ball.x += ballXSpeed * bulletTime;
+        bulletTime = 0.0;
       }
     }
 
