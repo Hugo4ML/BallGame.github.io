@@ -84,7 +84,7 @@ async function main() {
     //Move ball.
     let bulletTime = deltaTime;
     while(bulletTime > 0.0) {
-      if((0.000000000001 < (1.0 - ball.x - ball.width) / ballXSpeed) && (bulletTime >= (1.0 - ball.x - ball.width) / ballXSpeed)) {
+      if((0.0 < (1.0 - ball.x - ball.width) / ballXSpeed) && (bulletTime >= (1.0 - ball.x - ball.width) / ballXSpeed)) {
         ball.x = 1.0 - ball.width;
         bulletTime -= (1.0 - ball.x - ball.width) / ballXSpeed;
         ballXSpeed *= -1.0;
