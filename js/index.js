@@ -35,7 +35,7 @@ async function main() {
   let ballXSpeed = 0.0005625 / 4.0;
   let ballYSpeed = 0.001 / 4.0;
   
-  let box = new Box(canvas, -0.1, -0.95, 0.028125 * 8.0, 0.05, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
+  let box = new Box(canvas, -0.1, -1.0, 0.028125 * 8.0, 0.05, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
   let ball = new Box(canvas, Math.random() - 0.5140625, -0.025, 0.028125, 0.05, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
   let targets = new Array(30);
   for(let target = 0; target < targets.length; ++target) targets[target] = new Box(canvas, (target * 0.25) % 1.875 - 0.982421875, 1.03125 - 0.1875 * ((target / 7.5) - (target / 7.5) % 1 + 1), 0.21484375, 0.125, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
