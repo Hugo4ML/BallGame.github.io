@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.48) Simple project";
+  window.document.title = "(0.3.49) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -82,29 +82,32 @@ async function main() {
     }
     
     //Move ball.
-    let bulletTime = deltaTime;
-    while(bulletTime > 0.0) {
-      let timeStep = deltaTime;
-      let timeFrames = [(1.0 - (ball.x + ball.width)) / ballXSpeed, (-1.0 - ball.x) / ballXSpeed, (1.0 - (ball.y + ball.height)) / ballYSpeed, (-1.0 - ball.y) / ballYSpeed];
-      let acts = [() => {
-        ballXSpeed *= -1.0;
-      }, () => {
-        ballXSpeed *= -1.0;
-      }, () => {
-        ballYSpeed *= -1.0;
-      }, () => {
-        ballYSpeed *= -1.0;
-      }]
-      for(let timeFrame of timeFrames) {
-        if(timeFrame > 0.0 && timeFrame < timeStep) timeStep = timeFrame;
+    function updatePositions(bulletTime) {
+      while(bulletTime > 0.0) {
+        let timeStep = deltaTime;
+        let timeFrames = [(1.0 - (ball.x + ball.width)) / ballXSpeed, (-1.0 - ball.x) / ballXSpeed, (1.0 - (ball.y + ball.height)) / ballYSpeed, (-1.0 - ball.y) / ballYSpeed];
+        let acts = [() => {
+          ballXSpeed *= -1.0;
+        }, () => {
+          ballXSpeed *= -1.0;
+        }, () => {
+          ballYSpeed *= -1.0;
+        }, () => {
+          ballYSpeed *= -1.0;
+        }];
+        for(let timeFrame of timeFrames) {
+          if(timeFrame > 0.0 && timeFrame < timeStep) timeStep = timeFrame;
+        }
+        ball.x += timeStep * ballXSpeed;
+        ball.y += timeStep * ballYSpeed;
+        for(let index = 0; index < timeFrames.length; ++index) {
+          if(timeFrames[index] == timeStep) acts[index]();
+        }
+        bulletTime -= timeStep;
       }
-      ball.x += timeStep * ballXSpeed;
-      ball.y += timeStep * ballYSpeed;
-      for(let index = 0; index < timeFrames.length; ++index) {
-        if(timeFrames[index] == timeStep) acts[index]();
-      }
-      bulletTime -= timeStep;
     }
+
+    updatePositions(bulletTime);
     
     gl.clearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
