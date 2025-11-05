@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.40) Simple project";
+  window.document.title = "(0.3.41) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -86,7 +86,7 @@ async function main() {
     let products = 0;
     let distances = ["", ""];
     while(bulletTime > 0.0) {
-      if((0.0 < (1.0 - ball.x - ball.width) / ballXSpeed) && (bulletTime >= (1.0 - ball.x - ball.width) / ballXSpeed)) {
+      if((0.0 < (1.0 - (ball.x + ball.width)) / ballXSpeed) && (bulletTime >= (1.0 - (ball.x + ball.width)) / ballXSpeed)) {
         distances[products] = "(" + products + "): " + (ball.x + ball.width);
         products++;
         window.document.title = distances[0] + "; " + distances[1];
