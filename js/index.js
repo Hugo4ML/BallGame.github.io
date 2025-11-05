@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.45) Simple project";
+  window.document.title = "(0.3.46) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -33,7 +33,7 @@ async function main() {
   gl.linkProgram(await program);
 
   let ballXSpeed = 0.0005625;
-  let ballYSpeed = 0.001 / 2.0;
+  let ballYSpeed = 0.001;
   
   let box = new Box(canvas, -0.1, -0.86875, 0.028125 * 8, 0.05, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
   let ball = new Box(canvas, Math.random() - 0.5140625, -0.025, 0.028125, 0.05, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
@@ -82,28 +82,6 @@ async function main() {
     }
     
     //Move ball.
-    /*let bulletTime = deltaTime;
-    let products = 0;
-    let distances = ["", ""];
-    while(bulletTime > 0.0) {
-      if((0.0 < (1.0 - (ball.x + ball.width)) / ballXSpeed) && (bulletTime >= (1.0 - (ball.x + ball.width)) / ballXSpeed)) {
-        distances[products] = "(" + products + "): " + (ball.x + ball.width);
-        products++;
-        window.document.title = distances[0] + "; " + distances[1];
-        //window.document.title = "Products: " + products;
-        //window.document.title = "Distance: " + ball.x + ball.width;
-        ball.x = 1.0 - ball.width;
-        bulletTime -= (1.0 - ball.x - ball.width) / ballXSpeed;
-        ballXSpeed *= -1.0;
-      } else if(ball.x + ballXSpeed * bulletTime < -1.0) {
-        ball.x = -1.0;
-        bulletTime -= (-1.0 - ball.x) / ballXSpeed;
-        ballXSpeed *= -1.0;
-      } else {
-        ball.x += ballXSpeed * bulletTime;
-        bulletTime = 0.0;
-      }
-    };*/
     let bulletTime = deltaTime;
     while(bulletTime > 0.0) {
       let timeStep = deltaTime;
