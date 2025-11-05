@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.13) Simple project";
+  window.document.title = "(0.3.14) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -59,7 +59,7 @@ async function main() {
     };
     
     //Reassign background and box colors.
-    /*if(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
       box.color = [1.0, 1.0, 1.0];
       ball.color = [1.0, 1.0, 1.0];
       for(let target = 0; target < targets.length; ++target) targets[target].color = [1.0, 1.0, 1.0];
@@ -69,7 +69,7 @@ async function main() {
       ball.color = [0.0, 0.0, 0.0];
       for(let target = 0; target < targets.length; ++target) targets[target].color = [0.0, 0.0, 0.0];
       backgroundColor = [1.0, 1.0, 1.0];
-    }*/
+    }
     
     //Check input.
     if(keyboard.ArrowRight.down && !keyboard.ArrowLeft.down) {
@@ -84,7 +84,7 @@ async function main() {
     //Move ball.
     let bulletTime = deltaTime;
     while(bulletTime > 0.0) {
-      if((0.0 < (1.0 - ball.x - ball.width) / ballXSpeed) && (bulletTime >= (1.0 - ball.x - ball.width) / ballXSpeed)) {
+      if((0.000000000000001 < (1.0 - ball.x - ball.width) / ballXSpeed) && (bulletTime >= (1.0 - ball.x - ball.width) / ballXSpeed)) {
         ball.x = 1.0 - ball.width;
         bulletTime -= (1.0 - ball.x - ball.width) / ballXSpeed;
         ballXSpeed *= -1.0;
