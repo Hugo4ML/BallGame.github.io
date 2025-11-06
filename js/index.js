@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.51) Simple project";
+  window.document.title = "(0.3.52) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -32,7 +32,7 @@ async function main() {
   gl.attachShader(program, await fragmentShader);
   gl.linkProgram(await program);
 
-  let ballXSpeed = 0.0;//0.0005625 / 4.0;
+  let ballXSpeed = 0.0005625 / 4.0;
   let ballYSpeed = 30.0;//0.001 / 4.0;
   
   let box = new Box(canvas, -0.1, -1.0, 0.028125 * 8.0, 0.05, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
