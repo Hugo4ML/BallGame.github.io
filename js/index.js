@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.55) Simple project";
+  window.document.title = "(0.3.56) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -49,7 +49,7 @@ async function main() {
     time = Date.now();
     
     if(ballYSpeed > 0.0) ballYSpeed = 1.0 / 4.0 / deltaTime;
-    if(ballYSpeed < 0.0) -ballYSpeed = 1.0 / 4.0 / deltaTime;
+    if(ballYSpeed < 0.0) ballYSpeed = -1.0 / 4.0 / deltaTime;
     
     if(deltaInnerWidth !== window.innerWidth || deltaInnerHeight !== window.innerHeight) {
       //Resize page.
