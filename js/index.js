@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.86) Simple project";
+  window.document.title = "(0.3.87) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -106,11 +106,12 @@ async function main() {
         ballYSpeed *= -1.0;
       }
       bulletTime -= timeStep;
-      if(bulletTime > deltaTime) {
+      window.document.title = deltaTime;
+      /*if(bulletTime > deltaTime) {
         window.document.title = bulletTime + " | " + deltaTime;
         ballMotion = false;
         break;
-      }
+      }*/
     }
     }
     /*{
