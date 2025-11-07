@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.80) Simple project";
+  window.document.title = "(0.3.81) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -42,6 +42,7 @@ async function main() {
   let backgroundColor = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [0.0, 0.0, 0.0]: [1.0, 1.0, 1.0];
 
   let fails = 0;
+  let ballMotion = true;
   
   let time = Date.now();
   let deltaInnerWidth = undefined, deltaInnerHeight = undefined;
@@ -87,6 +88,7 @@ async function main() {
     }
     
     //Move ball.
+    if(ballMotion) {
     let bulletTime = deltaTime;
     while(bulletTime > 0.0) {
       let timeStep = bulletTime
@@ -97,19 +99,19 @@ async function main() {
         timeStep = (-1.0 - ball.y) / ballYSpeed;
       }
       ball.y += ballYSpeed * timeStep;
-      if(((1.0 - (ball.y + ball.height)) / ballYSpeed) == timeStep) {
+      if(ball.y + ball.height == 1.0/*((1.0 - (ball.y + ball.height)) / ballYSpeed) == timeStep*/) {
         ballYSpeed *= -1.0;
       }
-      if(((-1.0 - ball.y) / ballYSpeed) == timeStep) {
+      if(ball.y == -1.0/*((-1.0 - ball.y) / ballYSpeed) == timeStep*/) {
         ballYSpeed *= -1.0;
       }
       bulletTime -= timeStep;
       if(bulletTime > deltaTime) {
-        window.document.title = "Total failure...";
-        ++fails;
-      } else {
-        window.document.title = "(0.3.80) F: " + fails + " " + (bulletTime - deltaTime);
+        window.document.title = "F: " + bulletTime - deltaTime;
+        ballMotion = false;
+        break;
       }
+    }
     }
     /*{
       let bulletTime = deltaTime;
