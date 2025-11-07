@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.79) Simple project";
+  window.document.title = "(0.3.80) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -50,8 +50,8 @@ async function main() {
     let deltaTime = Date.now() - time;
     time = Date.now();
     
-    if(ballYSpeed > 0.0) ballYSpeed = (0.975) / deltaTime;
-    if(ballYSpeed < 0.0) ballYSpeed = -(0.975) / deltaTime;
+    if(ballYSpeed > 0.0) ballYSpeed = (2.0 * 0.975) / deltaTime;
+    if(ballYSpeed < 0.0) ballYSpeed = -(2.0 * 0.975) / deltaTime;
     
     if(deltaInnerWidth !== window.innerWidth || deltaInnerHeight !== window.innerHeight) {
       //Resize page.
@@ -90,17 +90,17 @@ async function main() {
     let bulletTime = deltaTime;
     while(bulletTime > 0.0) {
       let timeStep = bulletTime
-      if(((1.0 - (ball.y + ball.height)) / ballYSpeed > 0.0) && ((1.0 - (ball.y + ball.height)) / ballYSpeed < timeStep)) {
+      if((((1.0 - (ball.y + ball.height)) / ballYSpeed) > 0.0) && (((1.0 - (ball.y + ball.height)) / ballYSpeed) < timeStep)) {
         timeStep = (1.0 - (ball.y + ball.height)) / ballYSpeed;
       }
       if(((-1.0 - ball.y) / ballYSpeed) && ((-1.0 - ball.y) / ballYSpeed < timeStep)) {
         timeStep = (-1.0 - ball.y) / ballYSpeed;
       }
       ball.y += ballYSpeed * timeStep;
-      if(ball.y + ball.height == 1.0) {
+      if(((1.0 - (ball.y + ball.height)) / ballYSpeed) == timeStep) {
         ballYSpeed *= -1.0;
       }
-      if(ball.y == -1.0) {
+      if(((-1.0 - ball.y) / ballYSpeed) == timeStep) {
         ballYSpeed *= -1.0;
       }
       bulletTime -= timeStep;
@@ -108,7 +108,7 @@ async function main() {
         window.document.title = "Total failure...";
         ++fails;
       } else {
-        window.document.title = "(0.3.79) F: " + fails + " " + (bulletTime - deltaTime);
+        window.document.title = "(0.3.80) F: " + fails + " " + (bulletTime - deltaTime);
       }
     }
     /*{
