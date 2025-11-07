@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.78) Simple project";
+  window.document.title = "(0.3.79) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -90,10 +90,10 @@ async function main() {
     let bulletTime = deltaTime;
     while(bulletTime > 0.0) {
       let timeStep = bulletTime
-      if((1.0 - (ball.y + ball.height)) / ballYSpeed > 0.0 && (1.0 - (ball.y + ball.height)) / ballYSpeed < timeStep) {
+      if(((1.0 - (ball.y + ball.height)) / ballYSpeed > 0.0) && ((1.0 - (ball.y + ball.height)) / ballYSpeed < timeStep)) {
         timeStep = (1.0 - (ball.y + ball.height)) / ballYSpeed;
       }
-      if((-1.0 - ball.y) / ballYSpeed && (-1.0 - ball.y) / ballYSpeed < timeStep) {
+      if(((-1.0 - ball.y) / ballYSpeed) && ((-1.0 - ball.y) / ballYSpeed < timeStep)) {
         timeStep = (-1.0 - ball.y) / ballYSpeed;
       }
       ball.y += ballYSpeed * timeStep;
@@ -108,7 +108,7 @@ async function main() {
         window.document.title = "Total failure...";
         ++fails;
       } else {
-        window.document.title = "(0.3.78) F: " + fails + " " + (bulletTime - deltaTime);
+        window.document.title = "(0.3.79) F: " + fails + " " + (bulletTime - deltaTime);
       }
     }
     /*{
