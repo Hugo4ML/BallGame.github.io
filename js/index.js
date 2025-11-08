@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.98) Simple project";
+  window.document.title = "(0.3.99) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -91,23 +91,25 @@ async function main() {
     if(ballMotion) {
       let bulletTime = deltaTime;
       while(bulletTime > 0.0) {
-        let life = undefined;
-        let death = undefined;
+        let life = false;
+        let death = false;
         let timeStep = bulletTime
         if(((1.0 - (ball.y + ball.height)) / ballYSpeed) > 0.0 && ((1.0 - (ball.y + ball.height)) / ballYSpeed) < timeStep) {
           timeStep = (1.0 - (ball.y + ball.height)) / ballYSpeed;
-          life = (1.0 - (ball.y + ball.height)) / ballYSpeed;
+          life = true;
+          //life = (1.0 - (ball.y + ball.height)) / ballYSpeed;
         }
         if(((-1.0 - ball.y) / ballYSpeed) > 0.0 && ((-1.0 - ball.y) / ballYSpeed) < timeStep) {
           timeStep = (-1.0 - ball.y) / ballYSpeed;
-          death = (-1.0 - ball.y) / ballYSpeed;
+          death = true;
+          //death = (-1.0 - ball.y) / ballYSpeed;
         }
         ball.y += timeStep * ballYSpeed;
         bulletTime -= timeStep;
-        if(life === ((1.0 - (ball.y + ball.height)) / ballYSpeed)) {
+        if(life/* === ((1.0 - (ball.y + ball.height)) / ballYSpeed)*/) {
           ballYSpeed *= -1.0;
         }
-        if(death === ((-1.0 - ball.y) / ballYSpeed)) {
+        if(death/* === ((-1.0 - ball.y) / ballYSpeed)*/) {
           ballYSpeed *= -1.0;
         }
       }
