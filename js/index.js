@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.94) Simple project";
+  window.document.title = "(0.3.95) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -33,7 +33,7 @@ async function main() {
   gl.linkProgram(await program);
 
   let ballXSpeed = 0.0;//0.0005625 / 4.0;
-  let ballYSpeed = 0.001 / 4.0;
+  let ballYSpeed = (0.975) * 60.0 / 1000.0;//0.001 / 4.0;
   
   let box = new Box(canvas, -0.1, -1.0, 0.028125 * 8.0, 0.05, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
   let ball = new Box(canvas, Math.random() - 0.5140625, -0.025, 0.028125, 0.05, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
@@ -51,8 +51,8 @@ async function main() {
     let deltaTime = Date.now() - time;
     time = Date.now();
     
-    if(ballYSpeed > 0.0) ballYSpeed = (5.0 * 0.975) / deltaTime;
-    if(ballYSpeed < 0.0) ballYSpeed = -(5.0 * 0.975) / deltaTime;
+    //if(ballYSpeed > 0.0) ballYSpeed = (0.975) / deltaTime;
+    //if(ballYSpeed < 0.0) ballYSpeed = -(0.975) / deltaTime;
     
     if(deltaInnerWidth !== window.innerWidth || deltaInnerHeight !== window.innerHeight) {
       //Resize page.
