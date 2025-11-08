@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.3.92) Simple project";
+  window.document.title = "(0.3.93) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -51,8 +51,8 @@ async function main() {
     let deltaTime = Date.now() - time;
     time = Date.now();
     
-    if(ballYSpeed > 0.0) ballYSpeed = (2.0 * 0.975) / deltaTime;
-    if(ballYSpeed < 0.0) ballYSpeed = -(2.0 * 0.975) / deltaTime;
+    if(ballYSpeed > 0.0) ballYSpeed = (0.975) / deltaTime;
+    if(ballYSpeed < 0.0) ballYSpeed = -(0.975) / deltaTime;
     
     if(deltaInnerWidth !== window.innerWidth || deltaInnerHeight !== window.innerHeight) {
       //Resize page.
@@ -108,6 +108,26 @@ async function main() {
         }
       }
     }
+    /*if(ballMotion) {
+      let bulletTime = deltaTime;
+      while(bulletTime > 0.0) {
+        let timeStep = bulletTime
+        if(((1.0 - (ball.y + ball.height)) / ballYSpeed) > 0.0 && ((1.0 - (ball.y + ball.height)) / ballYSpeed) < timeStep) {
+          timeStep = (1.0 - (ball.y + ball.height)) / ballYSpeed;
+        }
+        if(((-1.0 - ball.y) / ballYSpeed) > 0.0 && ((-1.0 - ball.y) / ballYSpeed) < timeStep) {
+          timeStep = (-1.0 - ball.y) / ballYSpeed;
+        }
+        ball.y += timeStep * ballYSpeed;
+        bulletTime -= timeStep;
+        if((ball.y + ball.height) == 1.0) {
+          ballYSpeed *= -1.0;
+        }
+        if(ball.y == -1.0) {
+          ballYSpeed *= -1.0;
+        }
+      }
+    }*/
     /*{
       let bulletTime = deltaTime;
       while(bulletTime > 0.0) {
