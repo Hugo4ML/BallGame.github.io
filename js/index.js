@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.4.16) Simple project";
+  window.document.title = "(0.4.17) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -88,17 +88,17 @@ async function main() {
     }
     
     //Move ball.
-    /*let bulletTime = deltaTime;
+    let bulletTime = deltaTime;
     while(bulletTime > 0.0) {
       timeStep = bulletTime;
       let hitBox = new Box(ball.x, ball.y, ball.width, ball.height);
       if((1.0 - (hitBox.y + hitBox.height)) / ballYSpeed > 0.0 && (1.0 - (hitBox.y + hitBox.height)) / ballYSpeed < timeStep) timeStep = (1.0 - (hitBox.y + hitBox.height)) / ballYSpeed;
       if((1.0 - hitBox.y) / ballYSpeed > 0.0 && (1.0 - hitBox.y) / ballYSpeed < timeStep) timeStep = (1.0 - hitBox.y) / ballYSpeed;
       ball.y += timeStep * ballYSpeed;
-      if((1.0 - (hitBox.y + hitBox.height)) / ballYSpeed == timeStep) ballYSpeed *= -1.0;
-      if((1.0 - hitBox.y) / ballYSpeed == timeStep) ballYSpeed *= -1.0;
+      if(ball.y + ball.height == 1.0) ballYSpeed *= -1.0;
+      if(ball.y == -1.0) ballYSpeed *= -1.0;
       bulletTime -= timeStep;
-    }*/
+    }
     
     gl.clearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
