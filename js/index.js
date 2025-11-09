@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.4.12) Simple project";
+  window.document.title = "(0.4.13) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -88,15 +88,39 @@ async function main() {
     }
     
     //Move ball.
-    if(ballMotion) {
-      let bulletTime = deltaTime;
-      let timeStep = bulletTime;//(1.0 - (ball.y + ball.height)) / ballYSpeed;
-      if(/*(1.0 - (ball.y + ball.height)) / ballYSpeed > 0.0 && */(1.0 - (ball.y + ball.height)) / ballYSpeed < timeStep) {
-        timeStep = (1.0 - (ball.y + ball.height)) / ballYSpeed;
-      }
+    let bulletTime = deltaTime;
+    while(bulletTime > 0.0) {
+      timeStep = bulletTime;
+      let hitBox = {
+        x: ball.x,
+        y: ball.y,
+        width: ball.width,
+        height: ball.height
+      };
+      if((1.0 - (ball.y + ball.height)) / ballYSpeed > 0.0 && (1.0 - (ball.y + ball.height)) / ballYSpeed < timeStep) timeStep = (1.0 - (ball.y + ball.height)) / ballYSpeed;
+      if((-1.0 - ball.y) / ballYSpeed > 0.0 && (-1.0 - ball.y) / ballYSpeed < timeStep) timeStep = (-1.0 - ball.y) / ballYSpeed;
       ball.y += timeStep * ballYSpeed;
-      if((1.0 - (ball.y + ball.height)) / ballYSpeed == timeStep) {
-        ballYSpeed *= -1.0;
+      bulletTime -= timeStep;
+      if((1.0 - (ball.y + ball.height)) / ballYSpeed == timeStep) ballYSpeed *= -1.0;
+      if((-1.0 - hitBox.y) / ballYSpeed == timeStep) ballYSpeed *= -1.0;
+    }
+    /*if(ballMotion) {
+      let bulletTime = deltaTime;
+      while(bulletTime > 0.0) {
+        let prevBall = {
+          x: ball.x,
+          y: ball.y,
+          width: ball.width,
+          height: ball.height
+        };
+        let timeStep = bulletTime;//(1.0 - (ball.y + ball.height)) / ballYSpeed;
+        if((1.0 - (ball.y + ball.height)) / ballYSpeed > 0.0 && (1.0 - (ball.y + ball.height)) / ballYSpeed < timeStep) {
+          timeStep = (1.0 - (ball.y + ball.height)) / ballYSpeed;
+        }
+        ball.y += timeStep * ballYSpeed;
+        if((1.0 - (prevBall.y + prevBall.height)) / ballYSpeed == timeStep) {
+          ballYSpeed *= -1.0;
+        }
       }
       //ball.y = 1.0 - ball.height;
       /*let bulletTime = deltaTime;
