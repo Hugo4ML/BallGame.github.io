@@ -7,7 +7,7 @@ async function main() {
   /*
   Main function. Declared as asynchronous to make better use of promises and read files.
   */
-  window.document.title = "(0.4.14) Simple project";
+  window.document.title = "(0.4.15) Simple project";
   
   const keyboard = new input.Keyboard();
   window.addEventListener("keydown", event => keyboard.keydown(event));
@@ -35,7 +35,7 @@ async function main() {
   let ballXSpeed = 0.0;//0.0005625 / 4.0;
   let ballYSpeed = 0.001 / 4.0;
   
-  let box = new Box(-0.1, -1.0, 0.028125 * 8.0, 0.05, canvas, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
+  let box = new Box(-0.1, -1.0, 0.028125 * 8.0, 0.05);//, canvas, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
   let ball = new Box(Math.random() - 0.5140625, -0.025, 0.028125, 0.05, canvas, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
   let targets = new Array(30);
   for(let target = 0; target < targets.length; ++target) targets[target] = new Box((target * 0.25) % 1.875 - 0.982421875, 1.03125 - 0.1875 * ((target / 7.5) - (target / 7.5) % 1 + 1), 0.21484375, 0.125, canvas, (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)? [1.0, 1.0, 1.0]: [0.0, 0.0, 0.0]);
@@ -88,22 +88,17 @@ async function main() {
     }
     
     //Move ball.
-    /*let bulletTime = deltaTime;
+    let bulletTime = deltaTime;
     while(bulletTime > 0.0) {
       timeStep = bulletTime;
-      let hitBox = {
-        x: ball.x,
-        y: ball.y,
-        width: ball.width,
-        height: ball.height
-      };
-      if((1.0 - (ball.y + ball.height)) / ballYSpeed > 0.0 && (1.0 - (ball.y + ball.height)) / ballYSpeed < timeStep) timeStep = (1.0 - (ball.y + ball.height)) / ballYSpeed;
-      if((-1.0 - ball.y) / ballYSpeed > 0.0 && (-1.0 - ball.y) / ballYSpeed < timeStep) timeStep = (-1.0 - ball.y) / ballYSpeed;
+      let hitBox = new Box(ball.x, ball.y, ball.width, ball.height);
+      if((1.0 - (hitBox.y + hitBox.height)) / ballYSpeed > 0.0 && (1.0 - (hitBox.y + hitBox.height)) / ballYSpeed < timeStep) timeStep = (1.0 - (hitBox.y + hitBox.height)) / ballYSpeed;
+      if((1.0 - hitBox.y) / ballYSpeed > 0.0 && (1.0 - hitBox.y) / ballYSpeed < timeStep) timeStep = (1.0 - hitBox.y) / ballYSpeed;
       ball.y += timeStep * ballYSpeed;
+      if((1.0 - (hitBox.y + hitBox.height)) / ballYSpeed == timeStep) ballYSpeed *= -1.0;
+      if((1.0 - hitBox.y) / ballYSpeed == timeStep) ballYSpeed *= -1.0;
       bulletTime -= timeStep;
-      if((1.0 - (ball.y + ball.height)) / ballYSpeed == timeStep) ballYSpeed *= -1.0;
-      if((-1.0 - hitBox.y) / ballYSpeed == timeStep) ballYSpeed *= -1.0;
-    }*/
+    }
     
     gl.clearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
