@@ -1,5 +1,6 @@
 "use strict"
 
-import {Box} from "./box.js";
+import {Box} from "./Box.js";
+import {Circle} from "./Circle.js";
 
-export {Box};
+export {Box, Circle};
