@@ -1,1 +1,1 @@
-# Hugo4ML.github.io
+# Hugo4ML.github.io/minigame/
