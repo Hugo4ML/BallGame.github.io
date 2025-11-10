@@ -17,10 +17,8 @@ export class Box {
     /*
     Define position and dimensions and create webgl components.
     */
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
+    this.x = x, this.y = y;
+    this.width = width, this.height = height;
     if(canvas !== undefined) {
       this.gl = canvas.getContext("webgl2");
       
@@ -52,9 +50,7 @@ export class Box {
       if(color !== undefined) this.color = color;
       else this.color = [0.0, 0.0, 0.0];
     } else {
-      this.gl = undefined;
-      this.vao = undefined;
-      this.ebo = undefined;
+      this.gl = undefined, this.vao = undefined, this.ebo = undefined;
     }
   }
   
