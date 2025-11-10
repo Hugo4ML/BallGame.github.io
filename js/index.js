@@ -48,9 +48,6 @@ async function main() {
     let deltaTime = Date.now() - time;
     time = Date.now();
     
-    //if(ballYSpeed > 0.0) ballYSpeed = (0.975) / deltaTime;
-    //if(ballYSpeed < 0.0) ballYSpeed = -(0.975) / deltaTime;
-    
     if(deltaInnerWidth !== window.innerWidth || deltaInnerHeight !== window.innerHeight) {
       //Resize page.
       let minimum = window.innerWidth / 16 <= window.innerHeight / 9? window.innerWidth / 16: window.innerHeight / 9;
@@ -92,8 +89,7 @@ async function main() {
       if((-1.0 - ball.x) / ballXSpeed > 0.0 && (-1.0 - ball.x) / ballXSpeed < timeStep) timeStep = (-1.0 - ball.x) / ballXSpeed;
       if((1.0 - (ball.y + ball.height)) / ballYSpeed > 0.0 && (1.0 - (ball.y + ball.height)) / ballYSpeed < timeStep) timeStep = (1.0 - (ball.y + ball.height)) / ballYSpeed;
       if((-1.0 - ball.y) / ballYSpeed > 0.0 && (-1.0 - ball.y) / ballYSpeed < timeStep) timeStep = (-1.0 - ball.y) / ballYSpeed;
-      ball.x += ballXSpeed * timeStep;
-      ball.y += ballYSpeed * timeStep;
+      ball.x += ballXSpeed * timeStep, ball.y += ballYSpeed * timeStep;
       if(ball.x + ball.width == 1.0) ballXSpeed *= -1.0;
       if(ball.x == -1.0) ballXSpeed *= -1.0;
       if(ball.y + ball.height == 1.0) ballYSpeed *= -1.0;
