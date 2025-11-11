@@ -2,6 +2,6 @@
 
 import {Shape} from "./Shape.js";
 import {Box} from "./Box.js";
-import {Circle} from "./Circle.js";
+import {Ellipse} from "./Ellipse.js";
 
-export {Shape, Box, Circle};
+export {Shape, Box, Ellipse};
