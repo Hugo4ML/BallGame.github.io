@@ -10,7 +10,7 @@ export class Shape {
   vao;
   vbo;
   ebo;
-  constructor(x, y, canvas, color) {
+  constructor(x, y, canvas) {
     /*
     Define position and create webgl components.
     */
