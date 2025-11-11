@@ -4,8 +4,7 @@ export class Shape {
   /*
   Shaped defined by a set of vertices to be drawn by using webgl element buffers.
   */
-  x;
-  y;
+  position;
   color;
   gl;
   vao;
@@ -15,7 +14,8 @@ export class Shape {
     /*
     Define position and create webgl components.
     */
-    this.x = x, this.y = y;
+    this.position = {};
+    this.position.x = x, this.position.y = y;
     if(canvas !== undefined) {
       this.gl = canvas.getContext("webgl2");
       
@@ -45,13 +45,28 @@ export class Shape {
       this.gl = undefined, this.vao = undefined, this.ebo = undefined;
     }
   }
+
+  /*
+  Provides easier access to certain properties.
+  */
+  get x() {
+    return this.position.x;
+  }
+  set x(x) {
+    this.position.x = x;
+  }
+  get y() {
+    return this.position.y;
+  }
+  set y(y) {
+    this.position.y = y;
+  }
   
   draw() {
     /*
     Draw vertex array object.
     */
     if(this.gl !== undefined) {
-      //Draw rectangle with webgl.
       const boundVao = this.gl.getParameter(this.gl.VERTEX_ARRAY_BINDING);
       
       this.gl.bindVertexArray(this.vao);
