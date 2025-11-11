@@ -1,6 +1,6 @@
 "use strict"
 
-export class Circle {
+export class Ellipse {
   x;
   y;
   radius;
