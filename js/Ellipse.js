@@ -1,22 +1,14 @@
 "use strict"
 
-export class Ellipse {
-  x;
-  y;
+import {Shape} from "./Shape.js";
+
+export class Ellipse extends Shape {
   radius;
-  gl;
-  vao;
-  vbo;
-  ebo;
   constructor(x, y, radius, canvas, color) {
     /*
     Creates a circle of a given radius.
     */
-    this.x = x;
-    this.y = y;
+    super(x, y, canvas);
     this.radius = radius;
-    if(canvas !== undefined) {
-      radius * (2.0 ** 0.5);
-    }
   }
 }
