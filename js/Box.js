@@ -1,5 +1,7 @@
 "use strict"
 
+import {Shape} from "./Shape.js";
+
 export class Box {
   /*
   Rectangle drawn by using webgl element buffers.
