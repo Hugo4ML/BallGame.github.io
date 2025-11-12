@@ -5,12 +5,13 @@ export class Shape {
   Shaped defined by a set of vertices to be drawn by using webgl element buffers.
   */
   position;
+  vertices;
   color;
   gl;
   vao;
   vbo;
   ebo;
-  constructor(x, y, canvas) {
+  constructor(x, y, vertices, canvas) {
     /*
     Define position and create webgl components.
     */
