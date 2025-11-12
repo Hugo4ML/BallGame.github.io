@@ -8,7 +8,7 @@ export class Ellipse extends Shape {
     /*
     Creates a circle of a given radius.
     */
-    super(x, y, canvas);
+    super(x, y, [], canvas);
     this.radius = radius;
   }
 }
